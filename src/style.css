@@ -41,7 +41,7 @@ li{
     border-radius: 10px;
 }
 
-.weather-tempature img{
+.weather-temperature img{
     margin-right: 5px;
     height: 64px;
     width:  64px;
@@ -54,8 +54,16 @@ strong {
     font-weight: 400;
 }
 
-.weather-tempature .units {
+.weather-temperature .units {
     position: relative;
     font-size: 16px;
-    top: -34px;
+}
+
+.weather-temperature .active{
+    color: rgb(33, 33, 33);
+    cursor: default;
+}
+
+.weather-temperature .active:hover {
+    text-decoration: none;
 }
