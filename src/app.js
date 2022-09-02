@@ -14,7 +14,6 @@ function formatDate(timestamp){
 
 }
 
-
 function displayTemperature(response){
     let temperatureElement = document.querySelector("#temperature");
     let cityElement = document.querySelector("#city");
@@ -28,13 +27,26 @@ function displayTemperature(response){
     descriptionElement.innerHTML = response.data.weather[0].description;
     humidityElement.innerHTML = response.data.main.humidity;
     windElement.innerHTML = Math.round(response.data.wind.speed);
-    dateElement.innerHTML = formatDate(response.data.dt * 1000)
+    dateElement.innerHTML = formatDate(response.data.dt * 1000);
     iconElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-let apiKey = "e9fb2a9a6df791c5c71eb9635363af89";
-let city = "Sydney";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e9fb2a9a6df791c5c71eb9635363af89&units=metric`;
-
 axios.get(apiUrl).then(displayTemperature);
+
+function search(city){
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=e9fb2a9a6df791c5c71eb9635363af89&units=metric`;
+axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event){
+event.preventDefault();
+let cityInputElement = document.querySelector("#city-input");
+search(cityInputElement.value);
+}
+
+search("New York");
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
